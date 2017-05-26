@@ -15,7 +15,7 @@ class Circle extends React.Component {
     this.start = 0
     this.end = Math.PI * 2 
     this.clockwise = true
-    this.color = this.props.color
+    this.color = "#0095DD"
     this.ch = this.props.ch
     this.dy = this.props.dy
     this.dx = this.props.dx
@@ -27,19 +27,26 @@ class Circle extends React.Component {
   }
 
   draw() {
-    if (this.y +this.radius + this.dy > this.ch){
-      this.dy = -this.dy * this.friction
-    } else {
-      this.dy += this.gravity
-      console.log(this.dy)
-    
+    if(this.x + this.dx > this.cw - this.radius || this.x + this.dx < this.radius) {
+      this.dx = -this.dx
     }
-    if (this.x + this.radius + this.dx > this.cw || this.x - this.radius <= 0) {
-       this.dx = -this.dx
+    if(this.y + this.dy > this.ch - this.radius || this.y + this.dy < this.radius) {
+      this.dy = -this.dy
     }
+
+    // if (this.y +this.radius + this.dy > this.ch){
+    //   this.dy = -this.dy * this.friction
+    // } else {
+    //   this.dy += this.gravity
+    //   console.log(this.dy)
     
-    this.x += this.dx
-    this.y += this.dy
+    // }
+    // if (this.x + this.radius + this.dx > this.cw || this.x - this.radius <= 0) {
+    //    this.dx = -this.dx
+    // }
+    
+    // this.x += this.dx
+    // this.y += this.dy
     const ctx = this.context
     ctx.beginPath()
     ctx.globalCompositeOperation = "difference"
@@ -53,8 +60,8 @@ class Circle extends React.Component {
     return this
   }
   move(mouse) {
-    this.x += 0.25
-
+    this.x += this.dx;
+    this.y += this.dy;
     return this
   }
   followMouse(mouse) {

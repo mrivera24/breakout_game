@@ -1,5 +1,5 @@
 import React from 'react'
-import Circulo from './Circle'
+import Circle from './Circle'
 
 
 
@@ -18,39 +18,25 @@ class Canvas extends React.Component {
     const mouse = new MouseEvent(canvas)
     const vw = canvas.width  = window.innerWidth
     const vh = canvas.height = window.innerHeight
-    const bolaCanasta = []
-    const colors = [
-       '#0E2759',
-       '#37648C',
-       '#F2B56B',
-       '#F26430',
-       '#D96666',
-    ]
-   
-    for (let i = 0; i < 200; i++) {
-       const radius = randomIntFromRange(4, 30)
-      const bola_props = {
-      dx: randomIntFromRange(-2, 2),
-      dy: randomIntFromRange(-2, 2),
+    const ballRadius = 20
+    
+    const bola_props = {
+      x: vw / 2,
+      y: vh -30,
+      dx: 2,
+      dy: -10,
       ch: vh,
       cw: vw,
-      x: randomIntFromRange(radius, vw - radius),
-      y: randomIntFromRange(0, vh - radius),
-      radius: radius,
-      color: randomColor(colors),
-      context: ctx
+      context: ctx,
+      radius: ballRadius
     }
-      bolaCanasta.push(new Circulo(bola_props))
-    }
-
-    console.log(bolaCanasta)
+    const bola = new Circle(bola_props)
     
     requestAnimationFrame(function gameLoop() {
       ctx.clearRect(0, 0, vw, vh)
       // Start drawing
- for (let i = 0; i< bolaCanasta.length; i++) {
-  bolaCanasta[i].draw()
- }
+      bola.draw().move()
+ 
 
       // End Drawing
       requestAnimationFrame(gameLoop)
