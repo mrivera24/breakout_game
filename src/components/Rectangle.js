@@ -10,25 +10,34 @@ class Rectangle extends React.Component {
     log(props)
     this.context = this.props.context
     this.x = this.props.x
-    this.y = this.props.y
+    this.ch = this.props.ch
+    //this.y = this.props.y
     this.width = this.props.width
     this.height = this.props.height
+    this.rightPressed = this.props.rightPressed
     /* this.end = this.props.end
     this.clockwise = this.props.clockwise */
 
-  }
+    }
 
   draw() {
+    if(this.rightPressed) {
+      this.x += 7
+    }
+    else if(this.leftPressed) {
+      this.x -= 7
+    }
     const ctx = this.context
     // Hexadecimal Color Red
     ctx.beginPath()
     ctx.save()
     ctx.fillStyle="#FF0000";
-    ctx.fillRect(this.x, this.y, this.width, this.height)
+    ctx.rect(this.x, this.ch - this.height, this.width, this.height)
+    ctx.fill()
     ctx.restore()
     ctx.closePath()
     return this
-  }
+    }
 
   move(){
     this.x++

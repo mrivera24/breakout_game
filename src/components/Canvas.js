@@ -1,6 +1,6 @@
 import React from 'react'
 import Circle from './Circle'
-
+import Square from './Rectangle'
 
 
 
@@ -18,8 +18,23 @@ class Canvas extends React.Component {
     const mouse = new MouseEvent(canvas)
     const vw = canvas.width  = window.innerWidth
     const vh = canvas.height = window.innerHeight
+    canvas.addEventListener("keydown", keyDownHandler, false);
+    canvas.addEventListener("keyup", keyUpHandler, false);
+    let rightPressed = false
+    let leftPressed = false
     const ballRadius = 20
-    
+    const paddleHeight = 10
+    const paddleWidth = 75
+    const paddleX = (vw - paddleWidth) / 2
+    const paddle_props = {
+      rightPressed: rightPressed,
+      leftPressed: leftPressed,
+      width: paddleWidth, 
+      height: paddleHeight,
+      x: paddleX,
+      context: ctx,
+      ch: vh
+    }
     const bola_props = {
       x: vw / 2,
       y: vh -30,
@@ -31,12 +46,33 @@ class Canvas extends React.Component {
       radius: ballRadius
     }
     const bola = new Circle(bola_props)
-    
+    const paddle = new Square(paddle_props)
+    function keyDownHandler(e) {
+      let rightPressed = false
+      let leftPressed = false
+    if(e.keyCode == 39) {
+        rightPressed = true;
+    }
+    else if(e.keyCode == 37) {
+        leftPressed = true;
+    }
+}
+
+function keyUpHandler(e) {
+  let rightPressed = false
+  let leftPressed = false
+    if(e.keyCode == 39) {
+        rightPressed = false;
+    }
+    else if(e.keyCode == 37) {
+        leftPressed = false;
+    }
+}
     requestAnimationFrame(function gameLoop() {
       ctx.clearRect(0, 0, vw, vh)
       // Start drawing
       bola.draw().move()
- 
+      paddle.draw()
 
       // End Drawing
       requestAnimationFrame(gameLoop)
