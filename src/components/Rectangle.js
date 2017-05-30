@@ -14,6 +14,7 @@ class Rectangle extends React.Component {
     this.width = this.props.width
     this.height = this.props.height
     this.kb = this.props.kb
+    this.color = this.props.color
     }
 
   draw() {
@@ -23,7 +24,7 @@ class Rectangle extends React.Component {
     // Hexadecimal Color Red
     ctx.beginPath()
     ctx.save()
-    ctx.fillStyle="#FF0000";
+    ctx.fillStyle = this.color
     ctx.rect(this.x, this.ch - this.height, this.width, this.height)
     ctx.fill()
     ctx.restore()

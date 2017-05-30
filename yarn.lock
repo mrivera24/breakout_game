@@ -4689,9 +4689,9 @@ sax@^1.2.1, sax@~1.2.1:
   version "1.2.2"
   resolved "https://registry.yarnpkg.com/sax/-/sax-1.2.2.tgz#fd8631a23bc7826bef5d871bdb87378c95647828"
 
-"scroller@git://github.com/mjohnston/scroller.git":
+"scroller@git://github.com/mjohnston/scroller":
   version "0.0.1"
-  resolved "git://github.com/mjohnston/scroller.git#054c3349d5ff7474589eb7fbbb36708e5c48e435"
+  resolved "git://github.com/mjohnston/scroller#054c3349d5ff7474589eb7fbbb36708e5c48e435"
 
 "semver@2 || 3 || 4 || 5", semver@^5.1.0, semver@^5.3.0:
   version "5.3.0"

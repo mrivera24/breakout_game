@@ -45,14 +45,28 @@ class Canvas extends React.Component {
       audio: audio,
       radius: ballRadius
     }
+
+    const square_props = {
+      width: 200,
+      height: 200,
+      x: 500,
+      ch: 500,
+      context: ctx,
+      color :"green"
+    }
+
+
+    const square = new Square(square_props)
     const bola = new Circle(bola_props)
     const paddle = new Square(paddle_props)
+
 
     requestAnimationFrame(function gameLoop() {
       ctx.clearRect(0, 0, vw, vh)
       // Start drawing
       bola.draw().move()
       paddle.draw().move()
+      square.draw().move()
 
       // End Drawing
       requestAnimationFrame(gameLoop)
